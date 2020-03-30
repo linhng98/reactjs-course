@@ -21,7 +21,7 @@ class App extends Component {
   nameChangedHandler = (event, id) => {
     const personIndex = this.state.persons.findIndex(person => id === person.id);
     const persons = [...this.state.persons];
-    persons[personIndex].name = event.target.value;
+    persons[personIndex].name = event.target.value ? event.target.value : String.fromCharCode(160);;
 
     this.setState({ persons: persons });
   }
@@ -40,6 +40,7 @@ class App extends Component {
   };
 
   resetHandler = () => {
+    console.log(listPersons)
     this.setState({
       persons: [...listPersons],
       showing: true,
@@ -70,7 +71,7 @@ class App extends Component {
         {persons}
         <br /><br />
         <Button onClick={this.toggleHideCardHandler}>hide card</Button>
-        <Button onClick={this.resetHandler}>recover</Button>
+        <Button onClick={this.resetHandler}>reset</Button>
       </div>
     );
   }
