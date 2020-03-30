@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import Person from './components/person';
 
+const listPersons = [
+  { id: 1, name: "Ha", age: 22 },
+  { id: 2, name: "Khue", age: 23 },
+  { id: 3, name: "Linh", age: 24 },
+];
+
 class App extends Component {
   state = {
-    persons: [
-      { name: "Ha", age: 22 },
-      { name: "Khue", age: 23 },
-      { name: "Linh", age: 24 },
-    ],
+    persons: [...listPersons],
     showing: true,
   }
 
