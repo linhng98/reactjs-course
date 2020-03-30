@@ -21,8 +21,11 @@ class App extends Component {
   nameChangedHandler = (event, id) => {
     const personIndex = this.state.persons.findIndex(person => id === person.id);
     const persons = [...this.state.persons];
-    persons[personIndex].name = event.target.value ? event.target.value : String.fromCharCode(160);;
 
+    const newPerson = { ...persons[personIndex] };
+    newPerson.name = event.target.value ? event.target.value : String.fromCharCode(160);;
+    persons[personIndex] = newPerson
+    
     this.setState({ persons: persons });
   }
 
@@ -40,7 +43,6 @@ class App extends Component {
   };
 
   resetHandler = () => {
-    console.log(listPersons)
     this.setState({
       persons: [...listPersons],
       showing: true,
