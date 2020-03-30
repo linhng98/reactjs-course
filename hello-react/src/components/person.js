@@ -28,7 +28,7 @@ const Person = (properties) => {
       <h3>{properties.name}</h3>
       <p>age: {properties.age}</p>
       <Input value={properties.name} onChange={properties.changedName} />
-      <Button type="button" onClick={properties.cliclDelete}>delete!</Button>
+      <Button type="button" onClick={properties.clickDelete}>delete!</Button>
     </StyledDiv>
   )
 }
