@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import Person from './components/person';
+import styled from 'styled-components';
 
 const listPersons = [
   { id: 1, name: "Ha", age: 22 },
   { id: 2, name: "Khue", age: 23 },
   { id: 3, name: "Linh", age: 24 },
 ];
+
+const Button = styled.button`
+  margin: 30px;
+`;
 
 class App extends Component {
   state = {
@@ -24,9 +29,21 @@ class App extends Component {
   clickDeleteHandler = (id) => {
     const personIndex = this.state.persons.findIndex(person => id === person.id);
     const persons = [...this.state.persons];
-    persons.splice(personIndex, 1); 
+    persons.splice(personIndex, 1);
 
     this.setState({ persons: persons });
+  }
+
+  toggleHideCardHandler = () => {
+    const isShow = this.state.showing;
+    this.setState({ showing: !isShow });
+  };
+
+  resetHandler = () => {
+    this.setState({
+      persons: [...listPersons],
+      showing: true,
+    })
   }
 
   render() {
@@ -52,6 +69,8 @@ class App extends Component {
         <h1>hello React</h1>
         {persons}
         <br /><br />
+        <Button onClick={this.toggleHideCardHandler}>hide card</Button>
+        <Button onClick={this.resetHandler}>recover</Button>
       </div>
     );
   }
