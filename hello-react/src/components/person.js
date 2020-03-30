@@ -14,11 +14,16 @@ const StyledDiv = styled.div`
   }
 `;
 
+const Input = styled.input`
+  width: 150px;
+`;
+
 const Person = (properties) => {
   return (
     <StyledDiv>
       <h3>{properties.name}</h3>
       <p>age: {properties.age}</p>
+      <Input value={properties.name} onChange={properties.changedName} />
     </StyledDiv>
   )
 }

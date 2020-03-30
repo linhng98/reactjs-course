@@ -13,24 +13,35 @@ class App extends Component {
     showing: true,
   }
 
+  nameChangedHandler = (event, id) => {
+    const personIndex = this.state.persons.findIndex(person => id === person.id);
+    const persons = [...this.state.persons];
+    persons[personIndex].name = event.target.value;
+
+    this.setState({ persons: persons });
+  }
+
   render() {
     let persons = null;
     if (this.state.showing === true) {
       persons = (
-        <div align="center">
+        <div>
           {this.state.persons.map((person) => {
             return <Person
               name={person.name}
-              age={person.age} />
+              age={person.age}
+              key={person.id}
+              changedName={(event) => this.nameChangedHandler(event, person.id)} />
           })}
         </div>
       )
     }
 
     return (
-      <div>
-        <h1 align="center">hello React</h1>
+      <div align="center">
+        <h1>hello React</h1>
         {persons}
+        <br /><br />
       </div>
     );
   }
