@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Person from '../components/person';
+import Persons from '../components/persons/persons';
 import styled from 'styled-components';
 
 const listPersons = [
@@ -55,22 +55,18 @@ class App extends Component {
     if (this.state.showing === true) {
       persons = (
         <div>
-          {this.state.persons.map((person) => {
-            return <Person
-              name={person.name}
-              age={person.age}
-              key={person.id}
-              changedName={(event) => this.nameChangedHandler(event, person.id)}
-              clickDelete={() => this.clickDeleteHandler(person.id)}
-            />
-          })}
+          <Persons 
+            persons={this.state.persons}
+            changedName={this.nameChangedHandler}
+            clickDelete={this.clickDeleteHandler}
+          />
         </div>
-      )
+      );
     }
 
     return (
       <div align="center">
-        <h1>hello React</h1>
+        <h1>{this.props.appTitle}</h1>
         {persons}
         <br /><br />
         <Button alt={this.state.showing} onClick={this.toggleHideCardHandler}>hide card</Button>
