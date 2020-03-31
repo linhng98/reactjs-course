@@ -9,7 +9,7 @@ const StyledDiv = styled.div`
   text-align: center;
   border: 1px solid black;
 
-  :hover{
+  &:hover{
     box-shadow: 0 5px 10px grey;
   }
 `;

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Person from './components/person';
+import Person from '../components/person';
 import styled from 'styled-components';
 
 const listPersons = [
@@ -9,6 +9,7 @@ const listPersons = [
 ];
 
 const Button = styled.button`
+  background-color: ${props => props.alt ? 'red' : 'green'};
   margin: 30px;
 `;
 
@@ -25,7 +26,7 @@ class App extends Component {
     const newPerson = { ...persons[personIndex] };
     newPerson.name = event.target.value ? event.target.value : String.fromCharCode(160);;
     persons[personIndex] = newPerson
-    
+
     this.setState({ persons: persons });
   }
 
@@ -72,7 +73,7 @@ class App extends Component {
         <h1>hello React</h1>
         {persons}
         <br /><br />
-        <Button onClick={this.toggleHideCardHandler}>hide card</Button>
+        <Button alt={this.state.showing} onClick={this.toggleHideCardHandler}>hide card</Button>
         <Button onClick={this.resetHandler}>reset</Button>
       </div>
     );
