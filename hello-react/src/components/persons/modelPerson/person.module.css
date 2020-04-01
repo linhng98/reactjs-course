@@ -1,0 +1,22 @@
+ .person {
+   width: 200px;
+   margin: 20px;
+   padding: 10px;
+   display: inline-block;
+   text-align: center;
+   border: 1px solid black;
+ }
+
+ .person:hover {
+   box-shadow: 0 5px 10px grey;
+ }
+
+ .deleteButton {
+   background-color: red;
+   color: seashell;
+   margin: 30px;
+ }
+
+ .inputChangeName {
+   width: 150px;
+ }

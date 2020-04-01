@@ -1,17 +1,12 @@
 import React, { Component } from 'react';
 import Persons from '../components/persons/persons';
-import styled from 'styled-components';
+import classes from './App.module.css';
 
 const listPersons = [
   { id: 1, name: "Ha", age: 22 },
   { id: 2, name: "Khue", age: 23 },
   { id: 3, name: "Linh", age: 24 },
 ];
-
-const Button = styled.button`
-  background-color: ${props => props.alt ? 'red' : 'green'};
-  margin: 30px;
-`;
 
 class App extends Component {
   state = {
@@ -51,26 +46,32 @@ class App extends Component {
   }
 
   render() {
+    let btnHide = [classes.Button];
+    let textButtonHide = "show card";
+
     let persons = null;
     if (this.state.showing === true) {
       persons = (
         <div>
-          <Persons 
+          <Persons
             persons={this.state.persons}
             changedName={this.nameChangedHandler}
             clickDelete={this.clickDeleteHandler}
           />
         </div>
       );
+
+      btnHide.push(classes.Red);
+      textButtonHide = "hide card";
     }
 
     return (
-      <div align="center">
+      <div className={classes.App}>
         <h1>{this.props.appTitle}</h1>
         {persons}
         <br /><br />
-        <Button alt={this.state.showing} onClick={this.toggleHideCardHandler}>hide card</Button>
-        <Button onClick={this.resetHandler}>reset</Button>
+        <button className={btnHide.join(' ')} onClick={this.toggleHideCardHandler}>{textButtonHide}</button>
+        <button className={classes.Button} onClick={this.resetHandler}>reset</button>
       </div>
     );
   }
