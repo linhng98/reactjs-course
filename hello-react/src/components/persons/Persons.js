@@ -3,7 +3,6 @@ import Person from './modelPerson/person';
 
 class Persons extends PureComponent {
   render() {
-    console.log("[persons.js] rendering person ....");
     return this.props.persons.map((person) => {
       return (
         <Person

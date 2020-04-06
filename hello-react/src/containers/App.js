@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Persons from '../components/persons/Persons';
 import Cockpit from '../components/cockpit/cockpit';
 import classes from './App.module.css';
+import withClass from '../hoc/withClass';
+import Aux from '../hoc/aux';
 
 const listPersons = [
   { id: 1, name: "Ha", age: 22 },
@@ -47,10 +49,15 @@ class App extends Component {
     })
   }
 
+  toggleShowCockpit = () => {
+    const isShow = this.state.showCockpit;
+    this.setState({ showCockpit: !isShow });
+  }
+
   render() {
     let persons = null;
     let cockpit = null;
-    
+
     if (this.state.showPersons === true) {
       persons = (
         <div>
@@ -75,12 +82,14 @@ class App extends Component {
     }
 
     return (
-      <div className={classes.App}>
+      // can use built-in React.Fragment, work same way
+      <Aux> 
+        <button onClick={this.toggleShowCockpit}>show cockpit</button>
         {cockpit}
         {persons}
-      </div>
+      </Aux>
     );
   }
 }
 
-export default App;
+export default withClass(App, classes.App);
