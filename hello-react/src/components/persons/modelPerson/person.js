@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './person.module.css';
 
 
-const Person = (properties) => {
+const person = (properties) => {
   return (
     <div className={classes.person}>
       <h3>{properties.name}</h3>
@@ -13,4 +13,4 @@ const Person = (properties) => {
   )
 }
 
-export default Person;
+export default person;

@@ -1,0 +1,24 @@
+.Cockpit button {
+  background-color: green;
+  color: black;
+  width: 200px;
+  height: 75px;
+  font-size: 20px;
+  text-align: center;
+  margin: 30px;
+  border-radius: 20px;
+}
+
+.Cockpit button:hover {
+  box-shadow: 10px 10px 30px grey;
+  background-color: lightgreen;
+  color: white;
+}
+
+.Cockpit button.Red {
+  background-color: red;
+}
+
+.Cockpit button.Red:hover {
+  background-color: salmon;
+}

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Persons from '../components/persons/persons';
+import Persons from '../components/persons/Persons';
+import Cockpit from '../components/cockpit/cockpit';
 import classes from './App.module.css';
 
 const listPersons = [
@@ -11,7 +12,8 @@ const listPersons = [
 class App extends Component {
   state = {
     persons: [...listPersons],
-    showing: true,
+    showPersons: true,
+    showCockpit: true,
   }
 
   nameChangedHandler = (event, id) => {
@@ -34,23 +36,22 @@ class App extends Component {
   }
 
   toggleHideCardHandler = () => {
-    const isShow = this.state.showing;
-    this.setState({ showing: !isShow });
+    const isShow = this.state.showPersons;
+    this.setState({ showPersons: !isShow });
   };
 
   resetHandler = () => {
     this.setState({
       persons: [...listPersons],
-      showing: true,
+      showPersons: true,
     })
   }
 
   render() {
-    let btnHide = [classes.Button];
-    let textButtonHide = "show card";
-
     let persons = null;
-    if (this.state.showing === true) {
+    let cockpit = null;
+    
+    if (this.state.showPersons === true) {
       persons = (
         <div>
           <Persons
@@ -60,18 +61,23 @@ class App extends Component {
           />
         </div>
       );
+    }
 
-      btnHide.push(classes.Red);
-      textButtonHide = "hide card";
+    if (this.state.showCockpit === true) {
+      cockpit = (
+        <Cockpit
+          showPersons={this.state.showPersons}
+          appTitle={this.props.appTitle}
+          toggleHideCardHandler={this.toggleHideCardHandler}
+          resetHandler={this.resetHandler}
+        />
+      )
     }
 
     return (
       <div className={classes.App}>
-        <h1>{this.props.appTitle}</h1>
+        {cockpit}
         {persons}
-        <br /><br />
-        <button className={btnHide.join(' ')} onClick={this.toggleHideCardHandler}>{textButtonHide}</button>
-        <button className={classes.Button} onClick={this.resetHandler}>reset</button>
       </div>
     );
   }
