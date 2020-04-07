@@ -16,17 +16,23 @@ class App extends Component {
     persons: [...listPersons],
     showPersons: true,
     showCockpit: true,
-  }
+    changeCounter: 0,
+  };
 
   nameChangedHandler = (event, id) => {
     const personIndex = this.state.persons.findIndex(person => id === person.id);
     const persons = [...this.state.persons];
 
     const newPerson = { ...persons[personIndex] };
-    newPerson.name = event.target.value ? event.target.value : String.fromCharCode(160);;
-    persons[personIndex] = newPerson
+    newPerson.name = event.target.value ? event.target.value : String.fromCharCode(160);
+    persons[personIndex] = newPerson;
 
-    this.setState({ persons: persons });
+    this.setState((prevState) => {
+      return {
+        persons: persons,
+        changeCounter: prevState.changeCounter + 1
+      };
+    });
   }
 
   clickDeleteHandler = (id) => {
@@ -40,13 +46,14 @@ class App extends Component {
   toggleHideCardHandler = () => {
     const isShow = this.state.showPersons;
     this.setState({ showPersons: !isShow });
-  };
+  }
 
   resetHandler = () => {
     this.setState({
       persons: [...listPersons],
       showPersons: true,
-    })
+      changeCounter: 0,
+    });
   }
 
   toggleShowCockpit = () => {
@@ -78,12 +85,12 @@ class App extends Component {
           toggleHideCardHandler={this.toggleHideCardHandler}
           resetHandler={this.resetHandler}
         />
-      )
+      );
     }
 
     return (
       // can use built-in React.Fragment, work same way
-      <Aux> 
+      <Aux>
         <button onClick={this.toggleShowCockpit}>show cockpit</button>
         {cockpit}
         {persons}

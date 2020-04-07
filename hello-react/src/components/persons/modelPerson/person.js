@@ -11,7 +11,7 @@ const person = (properties) => {
       <input className={classes.inputChangeName} value={properties.name} onChange={properties.changedName} />
       <button className={classes.deleteButton} type="button" onClick={properties.clickDelete}>delete!</button>
     </Aux>
-  )
+  );
 }
 
 export default withClass(person, classes.person);
