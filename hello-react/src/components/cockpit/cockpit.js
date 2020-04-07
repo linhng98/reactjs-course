@@ -21,9 +21,9 @@ const cockpit = (props) => {
 }
 
 cockpit.propTypes = {
-  appTitle = PropTypes.string,
-  toggleHideCardHandler = PropTypes.func,
-  resetHandler = PropTypes.func
+  appTitle: PropTypes.string,
+  toggleHideCardHandler: PropTypes.func,
+  resetHandler: PropTypes.func
 }
 
 export default memo(cockpit);
