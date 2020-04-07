@@ -1,5 +1,6 @@
 import React, { memo } from 'react';
 import classes from './cockpit.module.css';
+import PropTypes from 'prop-types';
 
 const cockpit = (props) => {
   let btnHide = [];
@@ -17,6 +18,12 @@ const cockpit = (props) => {
       <button className={classes.Button} onClick={props.resetHandler}>reset</button>
     </div>
   )
+}
+
+cockpit.propTypes = {
+  appTitle = PropTypes.string,
+  toggleHideCardHandler = PropTypes.func,
+  resetHandler = PropTypes.func
 }
 
 export default memo(cockpit);
