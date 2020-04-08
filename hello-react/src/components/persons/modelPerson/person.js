@@ -4,7 +4,7 @@ import withClass from '../../../hoc/withClass';
 import Aux from '../../../hoc/aux';
 import PropTypes from 'prop-types';
 
-const person = (properties) => {
+const Person = (properties) => {
   return (
     <Aux>
       <h3>{properties.name}</h3>
@@ -16,11 +16,11 @@ const person = (properties) => {
 }
 
 // optional for type properties error detect
-person.propTypes = {
+Person.propTypes = {
   name: PropTypes.string,
   age: PropTypes.number,
   changedName: PropTypes.func,
   clickDelete: PropTypes.func
 }
 
-export default withClass(person, classes.person);
+export default withClass(Person, classes.person);
