@@ -1,4 +1,4 @@
-import React, { memo, useRef, useEffect } from 'react';
+import React, { memo, useRef, useEffect, useContext } from 'react';
 import classes from './cockpit.module.css';
 import PropTypes from 'prop-types';
 import AuthContext from '../../context/auth-context';
@@ -7,6 +7,7 @@ const Cockpit = (props) => {
   let btnHide = [];
   let textButtonHide = "show card";
   const toggleBtnRefHideCard = useRef(null);
+  const context = useContext(AuthContext);
 
   useEffect(() => {
     toggleBtnRefHideCard.current.click();
@@ -22,9 +23,7 @@ const Cockpit = (props) => {
       <h1>{props.appTitle}</h1>
       <button ref={toggleBtnRefHideCard} className={btnHide.join(' ')} onClick={props.toggleHideCardHandler}>{textButtonHide}</button>
       <button className={classes.Button} onClick={props.resetHandler}>reset</button>
-      <AuthContext.Consumer>
-        {(context) => <button className={classes.Blue} onClick={context.login} >login</button>}
-      </AuthContext.Consumer>
+      <button className={classes.Blue} onClick={context.login} >login</button>
     </div>
   )
 }

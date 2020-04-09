@@ -4,13 +4,14 @@ import withClass from '../../../hoc/withClass';
 import Aux from '../../../hoc/aux';
 import PropTypes from 'prop-types';
 import AuthContext from '../../../context/auth-context';
+import { useContext } from 'react';
 
 const Person = (properties) => {
+  const authContext = useContext(AuthContext);
+
   return (
     <Aux>
-      <AuthContext.Consumer>
-        {(context) => context.authenticated ? <h4>Authenticated</h4> : <h4>please login</h4>}
-      </AuthContext.Consumer>
+      {authContext.authenticated ? <h4>Authenticated</h4> : <h4>please login</h4>}
       <h3>{properties.name}</h3>
       <p>age: {properties.age}</p>
       <input className={classes.inputChangeName} value={properties.name} onChange={properties.changedName} />
