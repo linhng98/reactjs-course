@@ -22,3 +22,11 @@
 .Cockpit button.Red:hover {
   background-color: salmon;
 }
+
+.Cockpit button.Blue {
+  background-color: steelblue;
+}
+
+.Cockpit button.Blue:hover {
+  background-color: turquoise;
+}

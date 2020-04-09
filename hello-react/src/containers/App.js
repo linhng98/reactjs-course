@@ -4,6 +4,7 @@ import Cockpit from '../components/cockpit/cockpit';
 import classes from './App.module.css';
 import withClass from '../hoc/withClass';
 import Aux from '../hoc/aux';
+import AuthContext from '../context/auth-context';
 
 const listPersons = [
   { id: 1, name: "Ha", age: 22 },
@@ -17,6 +18,7 @@ class App extends Component {
     showPersons: true,
     showCockpit: true,
     changeCounter: 0,
+    authenticated: false,
   };
 
   nameChangedHandler = (event, id) => {
@@ -61,6 +63,11 @@ class App extends Component {
     this.setState({ showCockpit: !isShow });
   }
 
+  loginHandler = () => {
+    const isAuthen = this.state.authenticated;
+    this.setState({ authenticated: !isAuthen });
+  }
+
   render() {
     let persons = null;
     let cockpit = null;
@@ -92,8 +99,13 @@ class App extends Component {
       // can use built-in React.Fragment, work same way
       <Aux>
         <button onClick={this.toggleShowCockpit}>show cockpit</button>
-        {cockpit}
-        {persons}
+        <AuthContext.Provider value={{
+          authenticated: this.state.authenticated,
+          login: this.loginHandler,
+        }}>
+          {cockpit}
+          {persons}
+        </AuthContext.Provider>
       </Aux>
     );
   }

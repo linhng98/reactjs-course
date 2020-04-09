@@ -3,10 +3,14 @@ import classes from './person.module.css';
 import withClass from '../../../hoc/withClass';
 import Aux from '../../../hoc/aux';
 import PropTypes from 'prop-types';
+import AuthContext from '../../../context/auth-context';
 
 const Person = (properties) => {
   return (
     <Aux>
+      <AuthContext.Consumer>
+        {(context) => context.authenticated ? <h4>Authenticated</h4> : <h4>please login</h4>}
+      </AuthContext.Consumer>
       <h3>{properties.name}</h3>
       <p>age: {properties.age}</p>
       <input className={classes.inputChangeName} value={properties.name} onChange={properties.changedName} />

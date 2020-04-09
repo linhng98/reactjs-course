@@ -1,6 +1,7 @@
 import React, { memo, useRef, useEffect } from 'react';
 import classes from './cockpit.module.css';
 import PropTypes from 'prop-types';
+import AuthContext from '../../context/auth-context';
 
 const Cockpit = (props) => {
   let btnHide = [];
@@ -21,6 +22,9 @@ const Cockpit = (props) => {
       <h1>{props.appTitle}</h1>
       <button ref={toggleBtnRefHideCard} className={btnHide.join(' ')} onClick={props.toggleHideCardHandler}>{textButtonHide}</button>
       <button className={classes.Button} onClick={props.resetHandler}>reset</button>
+      <AuthContext.Consumer>
+        {(context) => <button className={classes.Blue} onClick={context.login} >login</button>}
+      </AuthContext.Consumer>
     </div>
   )
 }
